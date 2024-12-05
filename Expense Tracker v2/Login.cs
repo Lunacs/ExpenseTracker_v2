@@ -40,7 +40,7 @@ namespace Expense_Tracker_v2
                     {
                         MessageBox.Show("Login Successful", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         
-                        Dashboard dashboardForm = new Dashboard();
+                        MainForm dashboardForm = new MainForm();
                         dashboardForm.Show();
                         this.Hide();
                     }

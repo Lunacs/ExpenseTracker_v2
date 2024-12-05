@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace Expense_Tracker_v2
 {
-    public partial class Dashboard : Form
+    public partial class Category : Form
     {
-        public Dashboard()
+        public Category()
         {
             InitializeComponent();
         }
 
-        private void bunifuLabel3_Click(object sender, EventArgs e)
+        private void Category_Load(object sender, EventArgs e)
         {
 
         }

@@ -16,7 +16,8 @@ namespace Expense_Tracker_v2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SignUp());
+            //Application.Run(new SignUp());
+            Application.Run(new Loginn());
         }
     }
 }
