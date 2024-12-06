@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -164,6 +165,19 @@ namespace Expense_Tracker_v2
                 default:
                     break;
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            CategoryyyForm categoryyy = new CategoryyyForm();
+            categoryyy.Show();
+
+            this.Hide();
         }
     }
 }
