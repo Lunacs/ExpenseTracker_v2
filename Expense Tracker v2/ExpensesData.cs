@@ -47,5 +47,40 @@ namespace Expense_Tracker_v2
             }
             return listData;
         }
+
+        public List<ExpensesData> expensesListDataTOP()
+        {
+            List<ExpensesData> listData = new List<ExpensesData>();
+            using (SqlConnection connection = new SqlConnection(stringConnection))
+            {
+                connection.Open();
+
+                //string selectData = "SELECT TOP 5 item as Item, description as About, category as Category, FORMAT(expense, 'N2') as Amount" +
+                //    "FROM expenses ORDER BY id DESC";
+                //string selectData = "SELECT TOP 5 * FROM expenses ORDER BY date_expense DESC"; // Example query
+                string selectData = "SELECT TOP 5 item, description, category, expense FROM expenses ORDER BY id DESC";
+
+
+                using (SqlCommand cmd = new SqlCommand(selectData, connection))
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        ExpensesData eData = new ExpensesData();
+
+                        eData.Item = reader["item"].ToString(); // Use alias
+                        eData.Description = reader["description"].ToString(); // Use alias
+                        eData.Category = reader["category"].ToString(); // Use alias
+                        eData.Cost = Convert.ToDouble(reader["expense"]); // Handle formatted string
+
+
+                        listData.Add(eData);
+                    }
+                }
+                connection.Close();
+            }
+            return listData;
+        }
     }
 }

@@ -17,7 +17,17 @@ namespace Expense_Tracker_v2
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new SignUp());
-            Application.Run(new Loginn());
+            //Application.Run(new LoadingScreen());
+
+            // Show the loading screen
+            using (LoadingScreen loadingScreen = new LoadingScreen())
+            {
+                loadingScreen.ShowDialog();
+            }
+
+            // Show the login form
+            Application.Run(new MainForm());
         }
     }
 }
+

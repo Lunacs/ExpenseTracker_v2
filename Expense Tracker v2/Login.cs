@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data;
 using System.Data.SqlClient;      
 
 namespace Expense_Tracker_v2
@@ -18,6 +17,8 @@ namespace Expense_Tracker_v2
         public Loginn()
         {
             InitializeComponent();
+            loginPassword.UseSystemPasswordChar = true; // Ensure this is set
+
         }
 
         private void bunifuButton21_Click(object sender, EventArgs e)
@@ -44,9 +45,14 @@ namespace Expense_Tracker_v2
                         dashboardForm.Show();
                         this.Hide();
                     }
+                    else if(loginUsername.Text == "" || loginPassword.Text == "")
+                    {
+                        bunifuSnackbar1.Show(this, "Please fill in all fields", Bunifu.UI.WinForms.BunifuSnackbar.MessageTypes.Error);
+                    }
                     else
                     {
-                        MessageBox.Show("Invalid Username or Password", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        bunifuSnackbar1.Show(this, "Invalid Username or Password", Bunifu.UI.WinForms.BunifuSnackbar.MessageTypes.Error);
+                        //MessageBox.Show("Invalid Username or Password", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                 }
@@ -63,7 +69,15 @@ namespace Expense_Tracker_v2
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            loginPassword.PasswordChar = checkBox1.Checked ? '\0' : '*';
+            //loginPassword.PasswordChar = checkBox1.Checked ? '\0' : '*';
+            if (checkBox1.CheckState == CheckState.Checked)
+            {
+                loginPassword.PasswordChar = '\0'; // Show password
+            }
+            else
+            {
+                loginPassword.PasswordChar = '*'; // Hide password
+            }
 
         }
     }

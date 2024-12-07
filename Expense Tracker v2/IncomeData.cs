@@ -47,5 +47,34 @@ namespace Expense_Tracker_v2
             }
             return listData;
         }
+
+        public List<IncomeData> IncomeListDataTOP()
+        {
+            List<IncomeData> listData = new List<IncomeData>();
+            using (SqlConnection connection = new SqlConnection(stringConnection))
+            {
+                connection.Open();
+
+                string selectData = "SELECT TOP 5 item, description, category, income FROM income ORDER BY id DESC";
+                using (SqlCommand cmd = new SqlCommand(selectData, connection))
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        IncomeData iData = new IncomeData();
+
+                        iData.Item = reader["item"].ToString();
+                        iData.Description = reader["description"].ToString();
+                        iData.Category = reader["category"].ToString();
+                        iData.Cost = Convert.ToDouble(reader["income"]);
+                        
+
+                        listData.Add(iData);
+                    }
+                }
+                connection.Close();
+            }
+            return listData;
+        }
     }
 }

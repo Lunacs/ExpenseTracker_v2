@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bunifu.UI.WinForms;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -58,8 +59,9 @@ namespace Expense_Tracker_v2
 		{
 			if(signup_username.Text == "" ||  signup_Password.Text == "" || signup_cPassword.Text == "")
 			{
-                MessageBox.Show("Please fill in all fields", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
+                //MessageBox.Show("Please fill in all fields", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                bunifuSnackbar1.Show(this, "Please fill in all fields", Bunifu.UI.WinForms.BunifuSnackbar.MessageTypes.Error);
+            }
 			else
 			{
                 if (checkConnection())

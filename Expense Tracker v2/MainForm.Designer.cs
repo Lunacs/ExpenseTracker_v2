@@ -44,7 +44,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             this.expensesDBDataSet1 = new Expense_Tracker_v2.expensesDBDataSet();
-            this.expensesForm1 = new Expense_Tracker_v2.ExpensesForm();
+            this.dashboardv21 = new Expense_Tracker_v2.Dashboardv2();
             this.bunifuPanel1.SuspendLayout();
             this.bunifuPanel7.SuspendLayout();
             this.bunifuPanel8.SuspendLayout();
@@ -378,12 +378,12 @@
             this.expensesDBDataSet1.DataSetName = "expensesDBDataSet";
             this.expensesDBDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // expensesForm1
+            // dashboardv21
             // 
-            this.expensesForm1.Location = new System.Drawing.Point(338, 12);
-            this.expensesForm1.Name = "expensesForm1";
-            this.expensesForm1.Size = new System.Drawing.Size(1336, 772);
-            this.expensesForm1.TabIndex = 2;
+            this.dashboardv21.Location = new System.Drawing.Point(338, 22);
+            this.dashboardv21.Name = "dashboardv21";
+            this.dashboardv21.Size = new System.Drawing.Size(1336, 750);
+            this.dashboardv21.TabIndex = 2;
             // 
             // MainForm
             // 
@@ -392,7 +392,7 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(245)))), ((int)(((byte)(233)))));
             this.ClientSize = new System.Drawing.Size(1782, 830);
-            this.Controls.Add(this.expensesForm1);
+            this.Controls.Add(this.dashboardv21);
             this.Controls.Add(this.bunifuFormControlBox1);
             this.Controls.Add(this.bunifuPanel1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -427,6 +427,6 @@
         private System.Windows.Forms.Button button5;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
         private expensesDBDataSet expensesDBDataSet1;
-        private ExpensesForm expensesForm1;
+        private Dashboardv2 dashboardv21;
     }
 }

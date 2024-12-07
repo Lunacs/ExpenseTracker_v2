@@ -38,5 +38,9 @@ date_expense DATE NULL,
 date_insert DATE NULL
 );
 
+SELECT TOP 5 item as Item, description as About, category as Category, FORMAT(expense, 'N2') as Amount
+FROM expenses
+ORDER BY id DESC;
+
 
 
