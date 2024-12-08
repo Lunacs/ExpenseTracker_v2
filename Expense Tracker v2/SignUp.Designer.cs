@@ -707,6 +707,7 @@
             this.bunifuPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("bunifuPictureBox1.Image")));
             this.bunifuPictureBox1.IsCircle = false;
             this.bunifuPictureBox1.Location = new System.Drawing.Point(558, 85);
+            this.bunifuPictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.bunifuPictureBox1.Name = "bunifuPictureBox1";
             this.bunifuPictureBox1.Size = new System.Drawing.Size(417, 417);
             this.bunifuPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;

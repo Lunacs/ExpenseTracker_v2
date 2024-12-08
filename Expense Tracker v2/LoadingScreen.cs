@@ -15,12 +15,6 @@ namespace Expense_Tracker_v2
             InitializeComponent();
 
             InitializeBackgroundWorker();
-
-            // Set the SizeMode property
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-
-            // Handle the Paint event
-            pictureBox1.Paint += PictureBox1_Paint;
         }
 
         private void InitializeBackgroundWorker()
@@ -66,18 +60,6 @@ namespace Expense_Tracker_v2
             else
             {
                 bunifuProgressBar1.Value = value;
-            }
-        }
-
-        private void PictureBox1_Paint(object sender, PaintEventArgs e)
-        {
-            if (pictureBox1.Image != null)
-            {
-                e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                e.Graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                e.Graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-                e.Graphics.DrawImage(pictureBox1.Image, new Rectangle(0, 0, pictureBox1.Width, pictureBox1.Height));
             }
         }
     }
