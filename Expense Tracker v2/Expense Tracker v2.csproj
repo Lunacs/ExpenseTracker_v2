@@ -217,17 +217,17 @@
     <Compile Include="CategoryyyForm.Designer.cs">
       <DependentUpon>CategoryyyForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dashboard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dashboard.Designer.cs">
-      <DependentUpon>Dashboard.cs</DependentUpon>
-    </Compile>
     <Compile Include="Dashboardv2.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Dashboardv2.Designer.cs">
       <DependentUpon>Dashboardv2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExpenseModal.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExpenseModal.Designer.cs">
+      <DependentUpon>ExpenseModal.cs</DependentUpon>
     </Compile>
     <Compile Include="ExpensesData.cs" />
     <Compile Include="ExpensesForm.cs">
@@ -242,6 +242,12 @@
     </Compile>
     <Compile Include="IncomeForm.Designer.cs">
       <DependentUpon>IncomeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IncomeModal.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IncomeModal.Designer.cs">
+      <DependentUpon>IncomeModal.cs</DependentUpon>
     </Compile>
     <Compile Include="LoadingScreen.cs">
       <SubType>Form</SubType>
@@ -259,12 +265,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>expensesDBDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="SignUp.cs">
       <SubType>Form</SubType>
@@ -286,17 +286,20 @@
     <EmbeddedResource Include="CategoryyyForm.resx">
       <DependentUpon>CategoryyyForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dashboard.resx">
-      <DependentUpon>Dashboard.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Dashboardv2.resx">
       <DependentUpon>Dashboardv2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExpenseModal.resx">
+      <DependentUpon>ExpenseModal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExpensesForm.resx">
       <DependentUpon>ExpensesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IncomeForm.resx">
       <DependentUpon>IncomeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IncomeModal.resx">
+      <DependentUpon>IncomeModal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoadingScreen.resx">
       <DependentUpon>LoadingScreen.cs</DependentUpon>

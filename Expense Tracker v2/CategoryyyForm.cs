@@ -21,6 +21,16 @@ namespace Expense_Tracker_v2
             InitializeComponent();
             loadCategories();
         }
+        public void refreshData()
+        {
+            if (InvokeRequired)
+            {
+                Invoke((MethodInvoker)refreshData);
+                return;
+            }
+
+            loadCategories();
+        }
 
         public void loadCategories()
         {

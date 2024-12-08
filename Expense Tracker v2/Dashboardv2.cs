@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.Globalization;
+using System.Windows.Forms;
+using LiveCharts;
+using LiveCharts.Wpf;
 
 namespace Expense_Tracker_v2
 {
@@ -18,13 +16,62 @@ namespace Expense_Tracker_v2
         public Dashboardv2()
         {
             InitializeComponent();
-            displayExpenseData();
+
+            expenseModal1.Visible = false;
+            incomeModal1.Visible = false;
+
+            expensesBtn.OnPressedState.FillColor = Color.FromArgb(255, 128, 0);
+            expensesBtn.OnPressedState.ForeColor = Color.White;
+            expensesBtn_Click(this, EventArgs.Empty);
+            incomeTotalIncome();
+            expensesTotalExpenses();
+            displayUsername();
+        }
+
+        public void displayUsername()
+        {
+            string getUsername = Loginn.username;
+            if (!string.IsNullOrEmpty(getUsername))
+            {
+                greetUser.Text = "Welcome, " + getUsername.Substring(0, 1).ToUpper() + getUsername.Substring(1);
+            }
+            else
+            {
+                greetUser.Text = "Welcome, Guest";
+            }
+        }
+
+        private void Dashboardv2_Load(object sender, EventArgs e)
+        {
+            incomeDateToday.Text = DateTime.Today.Date.ToString("MMMM dd, yyyy"); // Format date as "December 12, 2024"
+            incomeTimeToday.Text = DateTime.Now.ToString("HH:mm tt"); // Format time as "12:00 PM"
+
+            expensesDateToday.Text = DateTime.Today.Date.ToString("MMMM dd, yyyy"); // Format date as "December 12, 2024"
+            expensesTimeToday.Text = DateTime.Now.ToString("HH:mm tt"); // Format time as "12:00 PM"
+        }
+
+        public void refreshData()
+        {
+            if (InvokeRequired)
+            {
+                Invoke((MethodInvoker)refreshData);
+                return;
+            }
+            expensesBtn.OnPressedState.FillColor = Color.FromArgb(249, 245, 255);
+            expensesBtn.OnPressedState.ForeColor = Color.White;
+            expensesBtn_Click(this, EventArgs.Empty);
+            incomeTotalIncome();
+            expensesTotalExpenses();
+            displayUsername();
         }
 
         public void displayExpenseData()
         {
             ExpensesData eData = new ExpensesData();
             List<ExpensesData> listData = eData.expensesListDataTOP();
+
+            //Theme
+            bunifuDataGridView1.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Chocolate;
 
             // Set AutoGenerateColumns to false
             bunifuDataGridView1.AutoGenerateColumns = false;
@@ -36,7 +83,7 @@ namespace Expense_Tracker_v2
             bunifuDataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Item",
-                HeaderText = "Subject"
+                HeaderText = "Item"
             });
             bunifuDataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -48,82 +95,270 @@ namespace Expense_Tracker_v2
                 DataPropertyName = "Category",
                 HeaderText = "Category"
             });
-            
-            bunifuDataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+            var amountColumn = new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Cost",
                 HeaderText = "Amount"
-            });
-
+            };
+            amountColumn.DefaultCellStyle.Format = "C"; // Format as currency
+            bunifuDataGridView1.Columns.Add(amountColumn);
             // Set the data source
             bunifuDataGridView1.DataSource = listData;
         }
 
-        //public void displayincomeData()
-        //{
-        //    IncomeData iData = new IncomeData();
-        //    List<IncomeData> listData = iData.IncomeListDataTOP();
-
-        //    // Set AutoGenerateColumns to false
-        //    bunifuDataGridView2.AutoGenerateColumns = false;
-
-        //    // Clear existing columns
-        //    bunifuDataGridView2.Columns.Clear();
-
-        //    // Add specific columns
-        //    bunifuDataGridView2.Columns.Add(new DataGridViewTextBoxColumn
-        //    {
-        //        DataPropertyName = "Item",
-        //        HeaderText = "Item"
-        //    });
-        //    bunifuDataGridView2.Columns.Add(new DataGridViewTextBoxColumn
-        //    {
-        //        DataPropertyName = "Description",
-        //        HeaderText = "Description"
-        //    });
-        //    bunifuDataGridView2.Columns.Add(new DataGridViewTextBoxColumn
-        //    {
-        //        DataPropertyName = "Category",
-        //        HeaderText = "Category"
-        //    });
-
-        //    bunifuDataGridView2.Columns.Add(new DataGridViewTextBoxColumn
-        //    {
-        //        DataPropertyName = "Cost",
-        //        HeaderText = "Amount"
-        //    });
-
-        //    // Set the data source
-        //    bunifuDataGridView2.DataSource = listData;
-        //}
-
-        public void totalIncome()
+        public void displayincomeData()
         {
-           using(SqlConnection connection = new SqlConnection(stringConnection))
+            IncomeData iData = new IncomeData();
+            List<IncomeData> listData = iData.IncomeListDataTOP();
+
+            //Theme
+            bunifuDataGridView1.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.ForestGreen;
+
+            // Set AutoGenerateColumns to false
+            bunifuDataGridView1.AutoGenerateColumns = false;
+
+            // Clear existing columns
+            bunifuDataGridView1.Columns.Clear();
+
+            // Add specific columns
+            bunifuDataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Item",
+                HeaderText = "Item"
+            });
+            bunifuDataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Description",
+                HeaderText = "Description"
+            });
+            bunifuDataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Category",
+                HeaderText = "Category"
+            });
+            var amountColumn = new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Cost",
+                HeaderText = "Amount"
+            };
+            amountColumn.DefaultCellStyle.Format = "C"; // Format as currency
+            bunifuDataGridView1.Columns.Add(amountColumn);
+            // Set the data source
+            bunifuDataGridView1.DataSource = listData;
+        }
+
+        public void incomeTotalIncome()
+        {
+            using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 connection.Open();
-                string selectData = "SELECT SUM(income) FROM income";
+                string query = "SELECT SUM(income) FROM income";
 
-                using (SqlCommand cmd = new SqlCommand(selectData, connection))
+                using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
-                    DateTime today = DateTime.Today;
-                    cmd.Parameters.AddWithValue("@date_in", today);
-
                     object result = cmd.ExecuteScalar();
-
-                    if(result != DBNull.Value)
+                    if (result != DBNull.Value)
                     {
                         decimal totalIncome = Convert.ToDecimal(result);
-
-                        bunifuLabel4.Text = totalIncome.ToString("C");
+                        CultureInfo culture = new CultureInfo("en-PH");
+                        bunifuLabel4.Text = totalIncome.ToString("C", culture);
                     }
                     else
                     {
-                        bunifuLabel4.Text = "P0.00";
+                        bunifuLabel4.Text = "₱0.00";
                     }
                 }
                 connection.Close();
             }
+        }
+
+        public void expensesTotalExpenses()
+        {
+            using (SqlConnection connection = new SqlConnection(stringConnection))
+            {
+                connection.Open();
+                string query = "SELECT SUM(expense) FROM expenses";
+
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    object result = cmd.ExecuteScalar();
+                    if (result != DBNull.Value)
+                    {
+                        decimal totalIncome = Convert.ToDecimal(result);
+                        CultureInfo culture = new CultureInfo("en-PH");
+                        bunifuLabel9.Text = totalIncome.ToString("C", culture);
+                    }
+                    else
+                    {
+                        bunifuLabel4.Text = "₱0.00";
+                    }
+                }
+                connection.Close();
+            }
+        }
+
+        private void bunifuPictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bunifuPanel5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void incomeBtn_Click(object sender, EventArgs e)
+        {
+            bunifuLabel11.Text = "Recent Income";
+            displayincomeData();
+            expense_chartLbl.Text = "Income Chart";
+            LoadIncomeDataIntoPieChart();
+        }
+
+        private void expensesBtn_Click(object sender, EventArgs e)
+        {
+            bunifuLabel11.Text = "Recent Expenses";
+            displayExpenseData();
+            expense_chartLbl.Text = "Expenses Chart";
+            LoadExpenseDataIntoPieChart();
+        }
+
+        private void LoadExpenseDataIntoPieChart()
+        {
+            using (SqlConnection connection = new SqlConnection(stringConnection))
+            {
+                connection.Open();
+                string query = "SELECT Category, SUM(expense) AS TotalCost FROM expenses GROUP BY Category";
+
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    pieChart1.Series.Clear();
+
+                    while (reader.Read())
+                    {
+                        string category = reader["Category"].ToString();
+                        decimal totalCost = Convert.ToDecimal(reader["TotalCost"]);
+
+                        var series = new LiveCharts.Wpf.PieSeries
+                        {
+                            Title = category,
+                            Values = new ChartValues<LiveCharts.Defaults.ObservableValue> { new LiveCharts.Defaults.ObservableValue((double)totalCost) },
+                            DataLabels = true,
+                            LabelPoint = chartPoint => $"{category}: {chartPoint.Y} ({chartPoint.Participation:P})"
+                        };
+
+                        pieChart1.Series.Add(series);
+                    }
+                }
+                connection.Close();
+            }
+        }
+        private void LoadIncomeDataIntoPieChart()
+        {
+            using (SqlConnection connection = new SqlConnection(stringConnection))
+            {
+                connection.Open();
+                string query = "SELECT Category, SUM(income) AS TotalCost FROM income GROUP BY Category";
+
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    pieChart1.Series.Clear();
+
+                    while (reader.Read())
+                    {
+                        string category = reader["Category"].ToString();
+                        decimal totalCost = Convert.ToDecimal(reader["TotalCost"]);
+
+                        var series = new LiveCharts.Wpf.PieSeries
+                        {
+                            Title = category,
+                            Values = new ChartValues<LiveCharts.Defaults.ObservableValue> { new LiveCharts.Defaults.ObservableValue((double)totalCost) },
+                            DataLabels = true,
+                            LabelPoint = chartPoint => $"{category}: {chartPoint.Y} ({chartPoint.Participation:P})"
+                        };
+
+                        pieChart1.Series.Add(series);
+                    }
+                }
+                connection.Close();
+            }
+        }
+
+
+        private void bunifuButton22_Click(object sender, EventArgs e)
+        {
+            ShowAndCenterUserControl1(expenseModal1, this);
+        }
+
+        private void bunifuPictureBox1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ShowAndCenterUserControl1(ExpenseModal expenseMod, Control parent)
+        {
+            // Ensure the parent and userControl are valid
+            if (expenseMod == null || parent == null) return;
+
+            // Calculate the centered position
+            int x = (parent.ClientSize.Width - expenseMod.Width) / 2;
+            int y = (parent.ClientSize.Height - expenseMod.Height) / 2;
+
+            // Set the location of the UserControl
+            expenseMod.Location = new Point(x, y);
+
+            // Make the UserControl visible
+            expenseMod.Visible = true;
+        }
+
+        private void ShowAndCenterUserControl2(IncomeModal incomeMod, Control parent)
+        {
+            // Ensure the parent and userControl are valid
+            if (incomeMod == null || parent == null) return;
+
+            // Calculate the centered position
+            int x = (parent.ClientSize.Width - incomeMod.Width) / 2;
+            int y = (parent.ClientSize.Height - incomeMod.Height) / 2;
+
+            // Set the location of the UserControl
+            incomeMod.Location = new Point(x, y);
+
+            // Make the UserControl visible
+            incomeMod.Visible = true;
+        }
+
+        private void Dashboardv2_Resize(object sender, EventArgs e)
+        {
+            if (expenseModal1.Visible)
+            {
+                ShowAndCenterUserControl1(expenseModal1, (Control)sender);
+            }
+            if (incomeModal1.Visible)
+            {
+                ShowAndCenterUserControl2(incomeModal1, (Control)sender);
+            }
+        }
+
+        private void bunifuPanel7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bunifuButton21_Click(object sender, EventArgs e)
+        {
+            ShowAndCenterUserControl2(incomeModal1, this);
+        }
+
+        private void expenseModal1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bunifuPanel8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

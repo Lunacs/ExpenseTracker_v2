@@ -18,11 +18,14 @@ namespace Expense_Tracker_v2
         {
             InitializeComponent();
             initilizeHover();
-            
+
+            dashboardv21.Visible = true;
+            expenseModal1.Visible = false;
+            incomeModal1.Visible = false;
+            categoryyyForm1.Visible = false;
+            incomeForm1.Visible = false;
+            expensesForm1.Visible = false;
         }
-
-        
-
         private void bunifuImageButton1_Click(object sender, EventArgs e)
         {
 
@@ -146,9 +149,59 @@ namespace Expense_Tracker_v2
 
         }
 
+
         private void button1_Click(object sender, EventArgs e)
         {
+            dashboardv21.Visible = true;
+            categoryyyForm1.Visible = false;
+            incomeForm1.Visible = false;
+            expensesForm1.Visible = false;
 
+            Dashboardv2 dashboard = dashboardv21 as Dashboardv2;
+            
+            if(dashboard != null)
+            {
+                dashboard.refreshData();
+            }
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            dashboardv21.Visible = false;
+            categoryyyForm1.Visible = true;
+            incomeForm1.Visible = false;
+            expensesForm1.Visible = false;
+
+            CategoryyyForm categoryyy = categoryyyForm1 as CategoryyyForm;
+            if (categoryyy != null)
+            {
+                categoryyy.refreshData();
+            }
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            dashboardv21.Visible = false;
+            categoryyyForm1.Visible = false;
+            incomeForm1.Visible = true;
+            expensesForm1.Visible = false;
+
+            IncomeForm incomeF = incomeForm1 as IncomeForm;
+            if (incomeF != null)
+            {
+                incomeF.refreshData();
+            }
+        }
+        private void button5_Click(object sender, EventArgs e)
+        {
+            dashboardv21.Visible = false;
+            categoryyyForm1.Visible = false;
+            incomeForm1.Visible = false;
+            expensesForm1.Visible = true;
+
+            ExpensesForm expensesF = expensesForm1 as ExpensesForm;
+            if (expensesF != null)
+            {
+                expensesF.refreshData();
+            }
         }
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
@@ -167,17 +220,8 @@ namespace Expense_Tracker_v2
             }
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
+        
 
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            CategoryyyForm categoryyy = new CategoryyyForm();
-            categoryyy.Show();
-
-            this.Hide();
-        }
+        
     }
 }

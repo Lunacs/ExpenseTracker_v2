@@ -21,6 +21,7 @@ namespace Expense_Tracker_v2
 
         }
 
+        public static string username;
         private void bunifuButton21_Click(object sender, EventArgs e)
         {
             using (SqlConnection connection = new SqlConnection(stringConnection))
@@ -39,6 +40,7 @@ namespace Expense_Tracker_v2
                     adapter.Fill(table);
                     if (table.Rows.Count > 0)
                     {
+                        username = loginUsername.Text.Trim();
                         MessageBox.Show("Login Successful", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         
                         MainForm dashboardForm = new MainForm();

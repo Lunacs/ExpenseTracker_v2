@@ -69,10 +69,10 @@ namespace Expense_Tracker_v2
                     {
                         ExpensesData eData = new ExpensesData();
 
-                        eData.Item = reader["item"].ToString(); // Use alias
-                        eData.Description = reader["description"].ToString(); // Use alias
-                        eData.Category = reader["category"].ToString(); // Use alias
-                        eData.Cost = Convert.ToDouble(reader["expense"]); // Handle formatted string
+                        eData.Item = reader["item"].ToString();
+                        eData.Description = reader["description"].ToString();
+                        eData.Category = reader["category"].ToString();
+                        eData.Cost = Convert.ToDouble(reader["expense"]);
 
 
                         listData.Add(eData);

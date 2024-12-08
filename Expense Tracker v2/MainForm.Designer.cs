@@ -45,6 +45,11 @@
             this.sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             this.expensesDBDataSet1 = new Expense_Tracker_v2.expensesDBDataSet();
             this.dashboardv21 = new Expense_Tracker_v2.Dashboardv2();
+            this.expenseModal1 = new Expense_Tracker_v2.ExpenseModal();
+            this.incomeModal1 = new Expense_Tracker_v2.IncomeModal();
+            this.categoryyyForm1 = new Expense_Tracker_v2.CategoryyyForm();
+            this.incomeForm1 = new Expense_Tracker_v2.IncomeForm();
+            this.expensesForm1 = new Expense_Tracker_v2.ExpensesForm();
             this.bunifuPanel1.SuspendLayout();
             this.bunifuPanel7.SuspendLayout();
             this.bunifuPanel8.SuspendLayout();
@@ -212,6 +217,7 @@
             this.button3.Text = "          Income";
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             this.button3.MouseEnter += new System.EventHandler(this.button3_MouseEnter);
             this.button3.MouseLeave += new System.EventHandler(this.button3_MouseLeave);
             // 
@@ -380,10 +386,49 @@
             // 
             // dashboardv21
             // 
-            this.dashboardv21.Location = new System.Drawing.Point(338, 22);
+            this.dashboardv21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(245)))), ((int)(((byte)(233)))));
+            this.dashboardv21.Location = new System.Drawing.Point(338, 12);
             this.dashboardv21.Name = "dashboardv21";
-            this.dashboardv21.Size = new System.Drawing.Size(1336, 750);
+            this.dashboardv21.Size = new System.Drawing.Size(1336, 876);
             this.dashboardv21.TabIndex = 2;
+            this.Controls.Add(this.dashboardv21);
+            // 
+            // expenseModal1
+            // 
+            this.expenseModal1.BackColor = System.Drawing.Color.White;
+            this.expenseModal1.Location = new System.Drawing.Point(897, 166);
+            this.expenseModal1.Name = "expenseModal1";
+            this.expenseModal1.Size = new System.Drawing.Size(441, 592);
+            this.expenseModal1.TabIndex = 3;
+            // 
+            // incomeModal1
+            // 
+            this.incomeModal1.BackColor = System.Drawing.Color.White;
+            this.incomeModal1.Location = new System.Drawing.Point(897, 166);
+            this.incomeModal1.Name = "incomeModal1";
+            this.incomeModal1.Size = new System.Drawing.Size(441, 592);
+            this.incomeModal1.TabIndex = 4;
+            // 
+            // categoryyyForm1
+            // 
+            this.categoryyyForm1.Location = new System.Drawing.Point(333, 5);
+            this.categoryyyForm1.Name = "categoryyyForm1";
+            this.categoryyyForm1.Size = new System.Drawing.Size(1336, 750);
+            this.categoryyyForm1.TabIndex = 5;
+            // 
+            // incomeForm1
+            // 
+            this.incomeForm1.Location = new System.Drawing.Point(338, 5);
+            this.incomeForm1.Name = "incomeForm1";
+            this.incomeForm1.Size = new System.Drawing.Size(1336, 772);
+            this.incomeForm1.TabIndex = 6;
+            // 
+            // expensesForm1
+            // 
+            this.expensesForm1.Location = new System.Drawing.Point(338, 12);
+            this.expensesForm1.Name = "expensesForm1";
+            this.expensesForm1.Size = new System.Drawing.Size(1336, 772);
+            this.expensesForm1.TabIndex = 7;
             // 
             // MainForm
             // 
@@ -392,13 +437,19 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(245)))), ((int)(((byte)(233)))));
             this.ClientSize = new System.Drawing.Size(1782, 830);
+            this.Controls.Add(this.expensesForm1);
+            this.Controls.Add(this.incomeForm1);
+            this.Controls.Add(this.categoryyyForm1);
+            this.Controls.Add(this.incomeModal1);
+            this.Controls.Add(this.expenseModal1);
             this.Controls.Add(this.dashboardv21);
             this.Controls.Add(this.bunifuFormControlBox1);
             this.Controls.Add(this.bunifuPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.Dashboard_Load);
+            this.Text = "Expense Tracker";
             this.bunifuPanel1.ResumeLayout(false);
             this.bunifuPanel7.ResumeLayout(false);
             this.bunifuPanel8.ResumeLayout(false);
@@ -427,6 +478,11 @@
         private System.Windows.Forms.Button button5;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
         private expensesDBDataSet expensesDBDataSet1;
-        private Dashboardv2 dashboardv21;
+        private ExpensesForm expensesForm1;
+        private IncomeForm incomeForm1;
+        private CategoryyyForm categoryyyForm1;
+        private IncomeModal incomeModal1;
+        private ExpenseModal expenseModal1;
+        private Expense_Tracker_v2.Dashboardv2 dashboardv21;
     }
 }
