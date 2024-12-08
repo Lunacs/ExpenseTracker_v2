@@ -57,7 +57,7 @@ namespace Expense_Tracker_v2
                 Invoke((MethodInvoker)refreshData);
                 return;
             }
-            expensesBtn.OnPressedState.FillColor = Color.FromArgb(249, 245, 255);
+            expensesBtn.OnPressedState.FillColor = Color.FromArgb(255, 128, 0);
             expensesBtn.OnPressedState.ForeColor = Color.White;
             expensesBtn_Click(this, EventArgs.Empty);
             incomeTotalIncome();
