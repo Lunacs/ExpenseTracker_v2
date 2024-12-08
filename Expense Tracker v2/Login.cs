@@ -82,5 +82,10 @@ namespace Expense_Tracker_v2
             }
 
         }
+
+        private void bunifuPictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

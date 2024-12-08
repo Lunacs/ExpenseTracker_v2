@@ -50,6 +50,7 @@
             this.categoryyyForm1 = new Expense_Tracker_v2.CategoryyyForm();
             this.incomeForm1 = new Expense_Tracker_v2.IncomeForm();
             this.expensesForm1 = new Expense_Tracker_v2.ExpensesForm();
+            this.bunifuPictureBox1 = new Bunifu.UI.WinForms.BunifuPictureBox();
             this.bunifuPanel1.SuspendLayout();
             this.bunifuPanel7.SuspendLayout();
             this.bunifuPanel8.SuspendLayout();
@@ -57,6 +58,7 @@
             this.bunifuPanel6.SuspendLayout();
             this.bunifuPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.expensesDBDataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bunifuPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // bunifuFormDock1
@@ -171,6 +173,7 @@
             this.bunifuPanel1.BorderColor = System.Drawing.Color.Transparent;
             this.bunifuPanel1.BorderRadius = 15;
             this.bunifuPanel1.BorderThickness = 1;
+            this.bunifuPanel1.Controls.Add(this.bunifuPictureBox1);
             this.bunifuPanel1.Controls.Add(this.bunifuPanel7);
             this.bunifuPanel1.Controls.Add(this.bunifuPanel8);
             this.bunifuPanel1.Controls.Add(this.bunifuPanel2);
@@ -194,7 +197,7 @@
             this.bunifuPanel7.BorderRadius = 3;
             this.bunifuPanel7.BorderThickness = 1;
             this.bunifuPanel7.Controls.Add(this.button3);
-            this.bunifuPanel7.Location = new System.Drawing.Point(21, 366);
+            this.bunifuPanel7.Location = new System.Drawing.Point(21, 383);
             this.bunifuPanel7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bunifuPanel7.Name = "bunifuPanel7";
             this.bunifuPanel7.ShowBorders = true;
@@ -271,7 +274,7 @@
             this.bunifuPanel2.BorderRadius = 3;
             this.bunifuPanel2.BorderThickness = 1;
             this.bunifuPanel2.Controls.Add(this.button5);
-            this.bunifuPanel2.Location = new System.Drawing.Point(21, 452);
+            this.bunifuPanel2.Location = new System.Drawing.Point(21, 469);
             this.bunifuPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bunifuPanel2.Name = "bunifuPanel2";
             this.bunifuPanel2.ShowBorders = true;
@@ -309,7 +312,7 @@
             this.bunifuPanel6.BorderRadius = 3;
             this.bunifuPanel6.BorderThickness = 1;
             this.bunifuPanel6.Controls.Add(this.button2);
-            this.bunifuPanel6.Location = new System.Drawing.Point(21, 279);
+            this.bunifuPanel6.Location = new System.Drawing.Point(21, 296);
             this.bunifuPanel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bunifuPanel6.Name = "bunifuPanel6";
             this.bunifuPanel6.ShowBorders = true;
@@ -347,7 +350,7 @@
             this.bunifuPanel5.BorderRadius = 3;
             this.bunifuPanel5.BorderThickness = 1;
             this.bunifuPanel5.Controls.Add(this.button1);
-            this.bunifuPanel5.Location = new System.Drawing.Point(21, 193);
+            this.bunifuPanel5.Location = new System.Drawing.Point(21, 210);
             this.bunifuPanel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bunifuPanel5.Name = "bunifuPanel5";
             this.bunifuPanel5.ShowBorders = true;
@@ -391,7 +394,6 @@
             this.dashboardv21.Name = "dashboardv21";
             this.dashboardv21.Size = new System.Drawing.Size(1336, 876);
             this.dashboardv21.TabIndex = 2;
-            this.Controls.Add(this.dashboardv21);
             // 
             // expenseModal1
             // 
@@ -430,6 +432,23 @@
             this.expensesForm1.Size = new System.Drawing.Size(1336, 772);
             this.expensesForm1.TabIndex = 7;
             // 
+            // bunifuPictureBox1
+            // 
+            this.bunifuPictureBox1.AllowFocused = false;
+            this.bunifuPictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bunifuPictureBox1.AutoSizeHeight = true;
+            this.bunifuPictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuPictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.bunifuPictureBox1.BorderRadius = 65;
+            this.bunifuPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("bunifuPictureBox1.Image")));
+            this.bunifuPictureBox1.IsCircle = true;
+            this.bunifuPictureBox1.Location = new System.Drawing.Point(90, 43);
+            this.bunifuPictureBox1.Name = "bunifuPictureBox1";
+            this.bunifuPictureBox1.Size = new System.Drawing.Size(131, 131);
+            this.bunifuPictureBox1.TabIndex = 17;
+            this.bunifuPictureBox1.TabStop = false;
+            this.bunifuPictureBox1.Type = Bunifu.UI.WinForms.BunifuPictureBox.Types.Circle;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -457,6 +476,7 @@
             this.bunifuPanel6.ResumeLayout(false);
             this.bunifuPanel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.expensesDBDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bunifuPictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -484,5 +504,6 @@
         private IncomeModal incomeModal1;
         private ExpenseModal expenseModal1;
         private Expense_Tracker_v2.Dashboardv2 dashboardv21;
+        private Bunifu.UI.WinForms.BunifuPictureBox bunifuPictureBox1;
     }
 }
