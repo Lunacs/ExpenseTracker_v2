@@ -68,7 +68,7 @@ namespace Expense_Tracker_v2
         public void displayExpenseData()
         {
             ExpensesData eData = new ExpensesData();
-            List<ExpensesData> listData = eData.expensesListDataTOP();
+            List<ExpensesData> listData = eData.expensesListDataTOP(Loginn.UserId);
 
             //Theme
             bunifuDataGridView1.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Chocolate;
@@ -109,7 +109,7 @@ namespace Expense_Tracker_v2
         public void displayincomeData()
         {
             IncomeData iData = new IncomeData();
-            List<IncomeData> listData = iData.IncomeListDataTOP();
+            List<IncomeData> listData = iData.IncomeListDataTOP(Loginn.UserId);
 
             //Theme
             bunifuDataGridView1.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.ForestGreen;
@@ -152,10 +152,11 @@ namespace Expense_Tracker_v2
             using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 connection.Open();
-                string query = "SELECT SUM(income) FROM income";
+                string query = "SELECT SUM(income) FROM income WHERE UserId = @userId";
 
                 using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
+                    cmd.Parameters.AddWithValue("@userId", Loginn.UserId);
                     object result = cmd.ExecuteScalar();
                     if (result != DBNull.Value)
                     {
@@ -177,11 +178,13 @@ namespace Expense_Tracker_v2
             using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 connection.Open();
-                string query = "SELECT SUM(expense) FROM expenses";
+                string query = "SELECT SUM(expense) FROM expenses WHERE UserId = @userId";
 
                 using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
+                    cmd.Parameters.AddWithValue("@userId", Loginn.UserId);
                     object result = cmd.ExecuteScalar();
+
                     if (result != DBNull.Value)
                     {
                         decimal totalIncome = Convert.ToDecimal(result);
@@ -190,7 +193,7 @@ namespace Expense_Tracker_v2
                     }
                     else
                     {
-                        bunifuLabel4.Text = "₱0.00";
+                        bunifuLabel9.Text = "₱0.00";
                     }
                 }
                 connection.Close();
@@ -228,10 +231,11 @@ namespace Expense_Tracker_v2
             using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 connection.Open();
-                string query = "SELECT Category, SUM(expense) AS TotalCost FROM expenses GROUP BY Category";
+                string query = "SELECT Category, SUM(expense) AS TotalCost FROM expenses WHERE UserId = @userId GROUP BY Category";
 
                 using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
+                    cmd.Parameters.AddWithValue("@userId", Loginn.UserId);
                     SqlDataReader reader = cmd.ExecuteReader();
                     pieChart1.Series.Clear();
 
@@ -259,10 +263,11 @@ namespace Expense_Tracker_v2
             using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 connection.Open();
-                string query = "SELECT Category, SUM(income) AS TotalCost FROM income GROUP BY Category";
+                string query = "SELECT Category, SUM(income) AS TotalCost FROM income WHERE UserId = @userId GROUP BY Category";
 
                 using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
+                    cmd.Parameters.AddWithValue("@userId", Loginn.UserId);
                     SqlDataReader reader = cmd.ExecuteReader();
                     pieChart1.Series.Clear();
 

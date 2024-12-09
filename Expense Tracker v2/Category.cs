@@ -32,7 +32,7 @@ namespace Expense_Tracker_v2
         public void loadCategories()
         {
             CategoryData cData = new CategoryData();
-            List<CategoryData> listData = cData.categoryListData();
+            List<CategoryData> listData = cData.categoryListData(Loginn.UserId);
 
             bunifuDataGridView1.DataSource = listData;
 

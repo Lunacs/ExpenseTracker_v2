@@ -22,31 +22,46 @@ namespace Expense_Tracker_v2
         }
 
         public static string username;
+        public static int UserId;
         private void bunifuButton21_Click(object sender, EventArgs e)
         {
             using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 connection.Open();
 
-                string selectData = "SELECT * FROM users WHERE username = @usern AND password = @password";
+                string selectData = "SELECT id FROM users WHERE username = @usern AND password = @password";
 
                 using (SqlCommand cmd = new SqlCommand(selectData, connection))
                 {
                     cmd.Parameters.AddWithValue("@usern", loginUsername.Text.Trim());
                     cmd.Parameters.AddWithValue("@password", loginPassword.Text.Trim());
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                    DataTable table = new DataTable();
 
-                    adapter.Fill(table);
-                    if (table.Rows.Count > 0)
+                    //SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    //DataTable table = new DataTable();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
                     {
+                        UserId = Convert.ToInt32(reader["id"]);
                         username = loginUsername.Text.Trim();
                         MessageBox.Show("Login Successful", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        
+
                         MainForm dashboardForm = new MainForm();
                         dashboardForm.Show();
                         this.Hide();
                     }
+
+                    //adapter.Fill(table);
+                    //if (table.Rows.Count > 0)
+                    //{
+                    //    UserId = Convert.ToInt32(reader["id"]);
+                    //    username = loginUsername.Text.Trim();
+                    //    MessageBox.Show("Login Successful", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        
+                    //    MainForm dashboardForm = new MainForm();
+                    //    dashboardForm.Show();
+                    //    this.Hide();
+                    //}
                     else if(loginUsername.Text == "" || loginPassword.Text == "")
                     {
                         bunifuSnackbar1.Show(this, "Please fill in all fields", Bunifu.UI.WinForms.BunifuSnackbar.MessageTypes.Error);
@@ -67,20 +82,6 @@ namespace Expense_Tracker_v2
             signUpForm.Show();
 
             this.Hide();
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            //loginPassword.PasswordChar = checkBox1.Checked ? '\0' : '*';
-            if (checkBox1.CheckState == CheckState.Checked)
-            {
-                loginPassword.PasswordChar = '\0'; // Show password
-            }
-            else
-            {
-                loginPassword.PasswordChar = '*'; // Hide password
-            }
-
         }
 
         private void bunifuPictureBox1_Click(object sender, EventArgs e)

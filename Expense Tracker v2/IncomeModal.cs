@@ -39,12 +39,13 @@ namespace Expense_Tracker_v2
             {
                 connection.Open();
 
-                string selectData = "SELECT category FROM categories WHERE type = @type AND status = @status";
+                string selectData = "SELECT category FROM categories WHERE type = @type AND status = @status AND UserId = @userId";
 
                 using (SqlCommand cmd = new SqlCommand(selectData, connection))
                 {
                     cmd.Parameters.AddWithValue("@type", "Income");
                     cmd.Parameters.AddWithValue("@status", "Active");
+                    cmd.Parameters.AddWithValue("@userId", Loginn.UserId);
 
                     income_category.Items.Clear();
 
@@ -71,8 +72,8 @@ namespace Expense_Tracker_v2
                 {
                     connection.Open();
 
-                    string insertData = "INSERT INTO income (category, item, income, description, date_income, date_insert)" +
-                        "VALUES(@cat, @item, @income, @desc, @date_in, @date)";
+                    string insertData = "INSERT INTO income (category, item, income, description, date_income, date_insert, UserId)" +
+                        "VALUES(@cat, @item, @income, @desc, @date_in, @date, @userId)";
 
                     using (SqlCommand cmd = new SqlCommand(insertData, connection))
                     {
@@ -82,6 +83,7 @@ namespace Expense_Tracker_v2
                         cmd.Parameters.AddWithValue("@desc", income_description.Text);
                         cmd.Parameters.AddWithValue("@date_in", IncomeDate.Value);
                         cmd.Parameters.AddWithValue("@date", DateTime.Now.Date);
+                        cmd.Parameters.AddWithValue("@userId", Loginn.UserId);
 
                         cmd.ExecuteNonQuery();
                         clearFields();

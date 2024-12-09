@@ -36,7 +36,7 @@ namespace Expense_Tracker_v2
         public void displayIncomeData()
         {
             IncomeData iData = new IncomeData();
-            List<IncomeData> listData = iData.IncomeListData();
+            List<IncomeData> listData = iData.IncomeListData(Loginn.UserId);
 
             bunifuDataGridView1.DataSource = listData;
         }

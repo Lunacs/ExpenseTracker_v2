@@ -35,7 +35,7 @@ namespace Expense_Tracker_v2
         public void loadCategories()
         {
             CategoryData cData = new CategoryData();
-            List<CategoryData> listData = cData.categoryListData();
+            List<CategoryData> listData = cData.categoryListData(Loginn.UserId);
 
             bunifuDataGridView1_new.DataSource = listData;
 
@@ -54,8 +54,8 @@ namespace Expense_Tracker_v2
                 {
                     connection.Open();
 
-                    string insertData = "INSERT INTO categories (category, type, status, date_insert)" +
-                        "VALUES(@cat, @type, @status, @date)";
+                    string insertData = "INSERT INTO categories (category, type, status, date_insert, UserId)" +
+                        "VALUES(@cat, @type, @status, @date, @userId)";
 
                     using (SqlCommand cmd = new SqlCommand(insertData, connection))
                     {
@@ -63,6 +63,7 @@ namespace Expense_Tracker_v2
                         cmd.Parameters.AddWithValue("@type", category_type_new.SelectedItem);
                         cmd.Parameters.AddWithValue("@status", category_status_new.SelectedItem);
                         cmd.Parameters.AddWithValue("@date", DateTime.Now.Date);
+                        cmd.Parameters.AddWithValue("@userId", Loginn.UserId);
 
                         cmd.ExecuteNonQuery();
                         clearFields();
@@ -104,7 +105,7 @@ namespace Expense_Tracker_v2
                     {
                         connection.Open();
 
-                        string updateData = "UPDATE categories SET category = @cat, type = @type, status = @status WHERE id = @id";
+                        string updateData = "UPDATE categories SET category = @cat, type = @type, status = @status WHERE id = @id AND UserId = @userId";
 
                         using (SqlCommand cmd = new SqlCommand(updateData, connection))
                         {
@@ -112,6 +113,7 @@ namespace Expense_Tracker_v2
                             cmd.Parameters.AddWithValue("@cat", category_cat_new.Text.Trim());
                             cmd.Parameters.AddWithValue("@type", category_type_new.SelectedItem);
                             cmd.Parameters.AddWithValue("@status", category_status_new.SelectedItem);
+                            cmd.Parameters.AddWithValue("@userId", Loginn.UserId);
 
                             cmd.ExecuteNonQuery();
                             clearFields();
@@ -152,11 +154,12 @@ namespace Expense_Tracker_v2
                     {
                         connection.Open();
 
-                        string updateData = "DELETE FROM categories WHERE id = @id";
+                        string updateData = "DELETE FROM categories WHERE id = @id AND UserId = @userId";
 
                         using (SqlCommand cmd = new SqlCommand(updateData, connection))
                         {
                             cmd.Parameters.AddWithValue("@id", getID);
+                            cmd.Parameters.AddWithValue("@userId", Loginn.UserId);
 
                             cmd.ExecuteNonQuery();
                             clearFields();

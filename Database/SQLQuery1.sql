@@ -43,4 +43,15 @@ FROM expenses
 ORDER BY id DESC;
 
 
+-- Add UserId column to categories table and set up foreign key
+ALTER TABLE categories ADD UserId INT;
+ALTER TABLE categories ADD CONSTRAINT FK_Categories_Users FOREIGN KEY (UserId) REFERENCES users(Id);
 
+-- Add UserId column to income table and set up foreign key
+ALTER TABLE income ADD UserId INT;
+ALTER TABLE income ADD CONSTRAINT FK_Income_Users FOREIGN KEY (UserId) REFERENCES users(Id);
+
+-- Add UserId column to expenses table and set up foreign key
+ALTER TABLE expenses ADD UserId INT;
+ALTER TABLE expenses ADD CONSTRAINT FK_Expenses_Users FOREIGN KEY (UserId) REFERENCES users(Id);
+   

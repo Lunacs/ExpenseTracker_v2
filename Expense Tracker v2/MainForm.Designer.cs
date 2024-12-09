@@ -32,6 +32,7 @@
             this.bunifuFormDock1 = new Bunifu.UI.WinForms.BunifuFormDock();
             this.bunifuFormControlBox1 = new Bunifu.UI.WinForms.BunifuFormControlBox();
             this.bunifuPanel1 = new Bunifu.UI.WinForms.BunifuPanel();
+            this.bunifuPictureBox1 = new Bunifu.UI.WinForms.BunifuPictureBox();
             this.bunifuPanel7 = new Bunifu.UI.WinForms.BunifuPanel();
             this.button3 = new System.Windows.Forms.Button();
             this.bunifuPanel8 = new Bunifu.UI.WinForms.BunifuPanel();
@@ -50,15 +51,14 @@
             this.categoryyyForm1 = new Expense_Tracker_v2.CategoryyyForm();
             this.incomeForm1 = new Expense_Tracker_v2.IncomeForm();
             this.expensesForm1 = new Expense_Tracker_v2.ExpensesForm();
-            this.bunifuPictureBox1 = new Bunifu.UI.WinForms.BunifuPictureBox();
             this.bunifuPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bunifuPictureBox1)).BeginInit();
             this.bunifuPanel7.SuspendLayout();
             this.bunifuPanel8.SuspendLayout();
             this.bunifuPanel2.SuspendLayout();
             this.bunifuPanel6.SuspendLayout();
             this.bunifuPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.expensesDBDataSet1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bunifuPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // bunifuFormDock1
@@ -186,6 +186,24 @@
             this.bunifuPanel1.Size = new System.Drawing.Size(333, 825);
             this.bunifuPanel1.TabIndex = 1;
             // 
+            // bunifuPictureBox1
+            // 
+            this.bunifuPictureBox1.AllowFocused = false;
+            this.bunifuPictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bunifuPictureBox1.AutoSizeHeight = true;
+            this.bunifuPictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuPictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.bunifuPictureBox1.BorderRadius = 65;
+            this.bunifuPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("bunifuPictureBox1.Image")));
+            this.bunifuPictureBox1.IsCircle = true;
+            this.bunifuPictureBox1.Location = new System.Drawing.Point(90, 43);
+            this.bunifuPictureBox1.Name = "bunifuPictureBox1";
+            this.bunifuPictureBox1.Size = new System.Drawing.Size(131, 131);
+            this.bunifuPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.bunifuPictureBox1.TabIndex = 17;
+            this.bunifuPictureBox1.TabStop = false;
+            this.bunifuPictureBox1.Type = Bunifu.UI.WinForms.BunifuPictureBox.Types.Circle;
+            // 
             // bunifuPanel7
             // 
             this.bunifuPanel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -254,7 +272,7 @@
             this.logout_btn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.logout_btn.Name = "logout_btn";
             this.logout_btn.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.logout_btn.Size = new System.Drawing.Size(324, 108);
+            this.logout_btn.Size = new System.Drawing.Size(424, 108);
             this.logout_btn.TabIndex = 10;
             this.logout_btn.Text = "          Log out";
             this.logout_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -350,6 +368,7 @@
             this.bunifuPanel5.BorderRadius = 3;
             this.bunifuPanel5.BorderThickness = 1;
             this.bunifuPanel5.Controls.Add(this.button1);
+            this.bunifuPanel5.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.bunifuPanel5.Location = new System.Drawing.Point(21, 210);
             this.bunifuPanel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bunifuPanel5.Name = "bunifuPanel5";
@@ -432,23 +451,6 @@
             this.expensesForm1.Size = new System.Drawing.Size(1336, 772);
             this.expensesForm1.TabIndex = 7;
             // 
-            // bunifuPictureBox1
-            // 
-            this.bunifuPictureBox1.AllowFocused = false;
-            this.bunifuPictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.bunifuPictureBox1.AutoSizeHeight = true;
-            this.bunifuPictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuPictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.bunifuPictureBox1.BorderRadius = 65;
-            this.bunifuPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("bunifuPictureBox1.Image")));
-            this.bunifuPictureBox1.IsCircle = true;
-            this.bunifuPictureBox1.Location = new System.Drawing.Point(90, 43);
-            this.bunifuPictureBox1.Name = "bunifuPictureBox1";
-            this.bunifuPictureBox1.Size = new System.Drawing.Size(131, 131);
-            this.bunifuPictureBox1.TabIndex = 17;
-            this.bunifuPictureBox1.TabStop = false;
-            this.bunifuPictureBox1.Type = Bunifu.UI.WinForms.BunifuPictureBox.Types.Circle;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -470,13 +472,13 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Expense Tracker";
             this.bunifuPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bunifuPictureBox1)).EndInit();
             this.bunifuPanel7.ResumeLayout(false);
             this.bunifuPanel8.ResumeLayout(false);
             this.bunifuPanel2.ResumeLayout(false);
             this.bunifuPanel6.ResumeLayout(false);
             this.bunifuPanel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.expensesDBDataSet1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bunifuPictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

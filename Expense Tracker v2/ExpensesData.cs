@@ -18,16 +18,17 @@ namespace Expense_Tracker_v2
         public string Description { get; set; }
         public string DateIncome { get; set; }
 
-        public List<ExpensesData> expensesListData()
+        public List<ExpensesData> expensesListData(int userId)
         {
             List<ExpensesData> listData = new List<ExpensesData>();
             using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 connection.Open();
 
-                string selectData = "SELECT * FROM expenses";
+                string selectData = "SELECT * FROM expenses WHERE userId = @userId";
                 using (SqlCommand cmd = new SqlCommand(selectData, connection))
                 {
+                    cmd.Parameters.AddWithValue("@userId", userId);
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
@@ -48,7 +49,7 @@ namespace Expense_Tracker_v2
             return listData;
         }
 
-        public List<ExpensesData> expensesListDataTOP()
+        public List<ExpensesData> expensesListDataTOP(int userId)
         {
             List<ExpensesData> listData = new List<ExpensesData>();
             using (SqlConnection connection = new SqlConnection(stringConnection))
@@ -58,11 +59,12 @@ namespace Expense_Tracker_v2
                 //string selectData = "SELECT TOP 5 item as Item, description as About, category as Category, FORMAT(expense, 'N2') as Amount" +
                 //    "FROM expenses ORDER BY id DESC";
                 //string selectData = "SELECT TOP 5 * FROM expenses ORDER BY date_expense DESC"; // Example query
-                string selectData = "SELECT TOP 5 item, description, category, expense FROM expenses ORDER BY id DESC";
+                string selectData = "SELECT TOP 5 item, description, category, expense FROM expenses WHERE userId = @userId ORDER BY id DESC";
 
 
                 using (SqlCommand cmd = new SqlCommand(selectData, connection))
                 {
+                    cmd.Parameters.AddWithValue("@userId", userId);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())

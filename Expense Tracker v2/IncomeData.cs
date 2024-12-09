@@ -18,16 +18,17 @@ namespace Expense_Tracker_v2
         public string Description { get; set; }
         public string DateIncome { get; set; }
 
-        public List<IncomeData> IncomeListData()
+        public List<IncomeData> IncomeListData(int userId)
         {
             List<IncomeData> listData = new List<IncomeData>();
             using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 connection.Open();
 
-                string selectData = "SELECT * FROM income";
+                string selectData = "SELECT * FROM income WHERE userId = @userId";
                 using (SqlCommand cmd = new SqlCommand(selectData, connection))
                 {
+                    cmd.Parameters.AddWithValue("@userId", userId);
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
@@ -48,16 +49,17 @@ namespace Expense_Tracker_v2
             return listData;
         }
 
-        public List<IncomeData> IncomeListDataTOP()
+        public List<IncomeData> IncomeListDataTOP(int userId)
         {
             List<IncomeData> listData = new List<IncomeData>();
             using (SqlConnection connection = new SqlConnection(stringConnection))
             {
                 connection.Open();
 
-                string selectData = "SELECT TOP 5 item, description, category, income FROM income ORDER BY id DESC";
+                string selectData = "SELECT TOP 5 item, description, category, income FROM income WHERE userId = @userId ORDER BY id DESC";
                 using (SqlCommand cmd = new SqlCommand(selectData, connection))
                 {
+                    cmd.Parameters.AddWithValue("@userId", userId);
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {

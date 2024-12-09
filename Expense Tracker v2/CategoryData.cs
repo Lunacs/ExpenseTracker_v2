@@ -18,7 +18,7 @@ namespace Expense_Tracker_v2
         public string Status { get; set; }
         public string Date { get; set; }
 
-        public List<CategoryData> categoryListData()
+        public List<CategoryData> categoryListData(int userId)
         {
             List<CategoryData> listData = new List<CategoryData>();
 
@@ -26,10 +26,11 @@ namespace Expense_Tracker_v2
             {
                 connect.Open();
 
-                string selectedData = "SELECT * FROM categories";
+                string selectedData = "SELECT * FROM categories WHERE userId = @userId";
 
                 using(SqlCommand cmd = new SqlCommand(selectedData, connect))
                 {
+                    cmd.Parameters.AddWithValue("@userId", userId);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
